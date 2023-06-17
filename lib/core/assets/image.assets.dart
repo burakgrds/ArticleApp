@@ -1,3 +1,0 @@
-class ImageAssets {
-  ImageAssets._();
-}

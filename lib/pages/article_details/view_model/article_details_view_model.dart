@@ -1,36 +1,17 @@
-import 'package:article_app/pages/article_details/model/article_details_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:article_app/core/model/articles_model.dart';
 
 import '../../../core/view_model/loading_view_model.dart';
-import '../repository/article_details_repo.dart';
 
 class ArticleDetailsViewModel extends LoadingViewModel {
-  ArticleDetailsViewModel({
-    required this.repo,
-  });
+  ArticleDetailsViewModel();
 
-  final ArticleDetailsRepo repo;
+  ArticlesModel get articlesModel => _articlesModel;
 
-  ArticleDetailsModel get homeModel => _homeModel;
-
-  set homeModel(ArticleDetailsModel homeModel) {
-    _homeModel = homeModel;
-    notifyListeners();
-  }
-
-  Future<void> fetchData() async {
-    try {
-      isLoading = true;
-
-      _homeModel = await repo.fetchData();
-    } catch (exception) {
-      debugPrint('Error in _fetchData : ${exception.toString()}');
-    }
-
-    isLoading = false;
+  set articlesModel(ArticlesModel articlesModel) {
+    _articlesModel = articlesModel;
     notifyListeners();
   }
 
   // INTERNALS
-  ArticleDetailsModel _homeModel = ArticleDetailsModel();
+  ArticlesModel _articlesModel = ArticlesModel();
 }

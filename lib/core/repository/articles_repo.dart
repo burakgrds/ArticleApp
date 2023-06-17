@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:article_app/core/utils/strings.dart';
 import 'package:http/http.dart' as http;
 import '../model/articles_model.dart';

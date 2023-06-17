@@ -1,3 +1,5 @@
+import 'package:article_app/core/utils/strings.dart';
+import 'package:article_app/pages/articles/components/articles_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +28,6 @@ class _ArticlesViewState extends State<ArticlesView> {
 
   @override
   Widget build(BuildContext context) {
-    //final model = context.watch<ArticlesViewModel>().articlesModel;
     return Consumer<ArticlesViewModel>(
       builder: (_, model, child) {
         if (model.isLoading) {
@@ -37,8 +38,8 @@ class _ArticlesViewState extends State<ArticlesView> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             title: const Text(
-              "Articles",
-              style: TextStyle(color: Colors.blue),
+              ArticleStrings.articlesTitle,
+              style: TextStyle(color: Colors.black87),
             ),
             centerTitle: true,
           ),
@@ -48,14 +49,7 @@ class _ArticlesViewState extends State<ArticlesView> {
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: model.articlesModel.results.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      child: ListTile(
-                        onTap: () {},
-                        title: Text(model.articlesModel.results[index].title!),
-                        subtitle: Text(
-                            model.articlesModel.results[index].id!.toString()),
-                      ));
+                  return ArticlesCard(model: model, index: index);
                 }),
           ),
         );

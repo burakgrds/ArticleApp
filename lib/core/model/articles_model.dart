@@ -3,7 +3,7 @@ import 'dart:convert';
 ArticlesModel articlesModelFromJson(String str) =>
     ArticlesModel.fromJson(json.decode(str));
 
-String articlesModelToJson(ArticlesModel data) => json.encode(data.toJson());
+String articlesModelToJson(ArticlesModel data) => json.encode(data);
 
 class ArticlesModel {
   ArticlesModel({
@@ -17,9 +17,8 @@ class ArticlesModel {
             List<Results>.from(json["results"].map((x) => Results.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
-        "results": List<dynamic>.from(results.map((x) => x.toJson())),
-      };
+  Map<String, dynamic> toJson() =>
+      {"results": List<dynamic>.from(results.map((x) => x.toJson()))};
 }
 
 class Results {
@@ -34,7 +33,7 @@ class Results {
   String? subsection;
   String? nytdsection;
   String? adxKeywords;
-  Null? column;
+  String? column;
   String? byline;
   String? type;
   String? title;
@@ -101,31 +100,31 @@ class Results {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['uri'] = this.uri;
-    data['url'] = this.url;
-    data['id'] = this.id;
-    data['asset_id'] = this.assetId;
-    data['source'] = this.source;
-    data['published_date'] = this.publishedDate;
-    data['updated'] = this.updated;
-    data['section'] = this.section;
-    data['subsection'] = this.subsection;
-    data['nytdsection'] = this.nytdsection;
-    data['adx_keywords'] = this.adxKeywords;
-    data['column'] = this.column;
-    data['byline'] = this.byline;
-    data['type'] = this.type;
-    data['title'] = this.title;
-    data['abstract'] = this.abstract;
-    data['des_facet'] = this.desFacet;
-    data['org_facet'] = this.orgFacet;
-    data['per_facet'] = this.perFacet;
-    data['geo_facet'] = this.geoFacet;
-    if (this.media != null) {
-      data['media'] = this.media!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['uri'] = uri;
+    data['url'] = url;
+    data['id'] = id;
+    data['asset_id'] = assetId;
+    data['source'] = source;
+    data['published_date'] = publishedDate;
+    data['updated'] = updated;
+    data['section'] = section;
+    data['subsection'] = subsection;
+    data['nytdsection'] = nytdsection;
+    data['adx_keywords'] = adxKeywords;
+    data['column'] = column;
+    data['byline'] = byline;
+    data['type'] = type;
+    data['title'] = title;
+    data['abstract'] = abstract;
+    data['des_facet'] = desFacet;
+    data['org_facet'] = orgFacet;
+    data['per_facet'] = perFacet;
+    data['geo_facet'] = geoFacet;
+    if (media != null) {
+      data['media'] = media!.map((v) => v.toJson()).toList();
     }
-    data['eta_id'] = this.etaId;
+    data['eta_id'] = etaId;
     return data;
   }
 }
@@ -161,15 +160,14 @@ class Media {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['type'] = this.type;
-    data['subtype'] = this.subtype;
-    data['caption'] = this.caption;
-    data['copyright'] = this.copyright;
-    data['approved_for_syndication'] = this.approvedForSyndication;
-    if (this.mediaMetadata != null) {
-      data['media-metadata'] =
-          this.mediaMetadata!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['subtype'] = subtype;
+    data['caption'] = caption;
+    data['copyright'] = copyright;
+    data['approved_for_syndication'] = approvedForSyndication;
+    if (mediaMetadata != null) {
+      data['media-metadata'] = mediaMetadata!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -191,11 +189,11 @@ class MediaMetadata {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['url'] = this.url;
-    data['format'] = this.format;
-    data['height'] = this.height;
-    data['width'] = this.width;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['url'] = url;
+    data['format'] = format;
+    data['height'] = height;
+    data['width'] = width;
     return data;
   }
 }

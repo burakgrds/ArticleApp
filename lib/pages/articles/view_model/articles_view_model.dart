@@ -1,8 +1,8 @@
-import 'package:article_app/pages/articles/repository/articles_repo.dart';
+import 'package:article_app/core/repository/articles_repo.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../../core/view_model/loading_view_model.dart';
-import '../model/articles_model.dart';
+import '../../../core/model/articles_model.dart';
 
 class ArticlesViewModel extends LoadingViewModel {
   ArticlesViewModel({
@@ -23,6 +23,8 @@ class ArticlesViewModel extends LoadingViewModel {
       isLoading = true;
 
       _articlesModel = await repo.fetchData();
+      articlesModel.results
+          .sort((a, b) => b.publishedDate!.compareTo(a.publishedDate!));
     } catch (exception) {
       debugPrint('Error in _fetchData : ${exception.toString()}');
     }
@@ -31,6 +33,6 @@ class ArticlesViewModel extends LoadingViewModel {
     notifyListeners();
   }
 
-  // INTERNALS
+  // Internals
   ArticlesModel _articlesModel = ArticlesModel();
 }

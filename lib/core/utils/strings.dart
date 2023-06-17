@@ -1,16 +1,7 @@
 class ArticleStrings {
   ArticleStrings._();
 
-  static const String title = 'Fames volutpat.';
-  static const String nam = 'Nam.';
-  static const String euismod = 'Euismod.';
-
-  static const String crslTitle = 'Suspendisse vel.';
-
-  static const String bottom = 'Sollicitudin in tortor.';
-  static const String bottomDesc =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Platea sollicitudin platea habitant senectus. Placerat.';
-
-  static const String bOp1 = 'Egestas scleri';
-  static const String bOp2 = 'Consectur';
+  static const String apiUrl =
+      'https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=';
+  static const String apiKey = 'k8zA3C7rTAM8r89G4cQZ428hgTOvvhsl';
 }

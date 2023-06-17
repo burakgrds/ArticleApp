@@ -1,5 +1,7 @@
-import 'package:flutter/services.dart';
+import 'dart:convert';
 
+import 'package:article_app/core/utils/strings.dart';
+import 'package:http/http.dart' as http;
 import '../model/articles_model.dart';
 
 abstract class ArticlesRepo {
@@ -9,9 +11,9 @@ abstract class ArticlesRepo {
 class ArticlesRepoImpl extends ArticlesRepo {
   @override
   Future<ArticlesModel> fetchData() async {
-    await Future.delayed(const Duration(milliseconds: 1800));
+    final response = await http
+        .get(Uri.parse(ArticleStrings.apiUrl + ArticleStrings.apiKey));
 
-    final resp = await rootBundle.loadString('assets/data/first_screen.json');
-    return articlesModelFromJson(resp);
+    return articlesModelFromJson(response.body);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:article_app/pages/articles/repository/articles_repo.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../../core/view_model/loading.viewmodel.dart';
+import '../../../core/view_model/loading_view_model.dart';
 import '../model/articles_model.dart';
 
 class ArticlesViewModel extends LoadingViewModel {

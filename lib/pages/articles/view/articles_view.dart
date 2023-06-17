@@ -46,17 +46,15 @@ class _ArticlesViewState extends State<ArticlesView> {
             padding: const EdgeInsets.all(8.0),
             child: ListView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: model.articlesModel.items.length,
+                itemCount: model.articlesModel.results.length,
                 itemBuilder: (context, index) {
                   return Card(
                       color: Theme.of(context).colorScheme.primaryContainer,
                       child: ListTile(
                         onTap: () {},
-                        title: Text(model.articlesModel.items[index].title!),
-                        subtitle: Text(model.articlesModel.items[index].desc!),
-                        leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                model.articlesModel.items[index].imageUrl!)),
+                        title: Text(model.articlesModel.results[index].title!),
+                        subtitle: Text(
+                            model.articlesModel.results[index].id!.toString()),
                       ));
                 }),
           ),

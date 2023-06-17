@@ -31,4 +31,11 @@ void main() {
     final model = articlesModelFromJson(response.body);
     expect(model, isInstanceOf<ArticlesModel>());
   });
+
+  test("Check if response status code is 200", () async {
+    final response = await http
+        .get(Uri.parse(ArticleStrings.apiUrl + ArticleStrings.apiKey));
+
+    expect(response.statusCode, 200); //200:0K
+  });
 }

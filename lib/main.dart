@@ -1,4 +1,3 @@
-import 'package:article_app/pages/article_details/view_model/article_details_view_model.dart';
 import 'package:article_app/core/repository/articles_repo.dart';
 import 'package:article_app/pages/articles/view/articles_view.dart';
 import 'package:article_app/pages/articles/view_model/articles_view_model.dart';
@@ -18,9 +17,6 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(
           create: (_) => ArticlesViewModel(repo: locator<ArticlesRepo>()),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => ArticleDetailsViewModel(),
         ),
       ],
       child: const MainApp(),

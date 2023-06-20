@@ -2,7 +2,6 @@ import 'package:article_app/core/utils/strings.dart';
 import 'package:article_app/pages/article_details/components/article_details_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import '../../../core/components/loading/loading.component.dart';
 import '../../articles/view_model/articles_view_model.dart';
 

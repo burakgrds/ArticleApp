@@ -1,4 +1,4 @@
-# Hey there, I am Burak.
+# Hey there, I am Burak. 🧑‍💻
 # I am Flutter Developer
 
 An Article App using New York Times API

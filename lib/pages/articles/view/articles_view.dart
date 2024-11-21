@@ -7,7 +7,7 @@ import '../../../core/components/loading/loading.component.dart';
 import '../view_model/articles_view_model.dart';
 
 class ArticlesView extends StatefulWidget {
-  const ArticlesView({Key? key}) : super(key: key);
+  const ArticlesView({super.key});
 
   @override
   State<ArticlesView> createState() => _ArticlesViewState();

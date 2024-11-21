@@ -4,11 +4,11 @@ import 'package:provider/provider.dart';
 
 class NotifierWidget<T extends ChangeNotifier> extends StatefulWidget {
   const NotifierWidget({
-    Key? key,
+    super.key,
     required this.builder,
     required this.model,
     this.child,
-  }) : super(key: key);
+  });
 
   final T model;
 

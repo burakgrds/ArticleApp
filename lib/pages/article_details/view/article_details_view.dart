@@ -8,7 +8,7 @@ import '../../articles/view_model/articles_view_model.dart';
 class ArticleDetailsView extends StatefulWidget {
   final int index;
 
-  const ArticleDetailsView({Key? key, required this.index}) : super(key: key);
+  const ArticleDetailsView({super.key, required this.index});
 
   @override
   State<ArticleDetailsView> createState() => _ArticleDetailsViewState();

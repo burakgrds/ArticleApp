@@ -13,8 +13,8 @@ class ArticlesCard extends StatelessWidget {
     var now_1w = DateTime.now().subtract(const Duration(days: 7));
 
     return now_1w.isBefore(
-            DateTime.parse(model.articlesModel.results[index].publishedDate!))
-        ? model.articlesModel.results[index].media!.isEmpty
+            DateTime.parse(model.articlesDto.results[index].publishedDate!))
+        ? model.articlesDto.results[index].media.isEmpty
             ? Container()
             : InkWell(
                 onTap: () => Navigator.of(context).push(
@@ -33,19 +33,19 @@ class ArticlesCard extends StatelessWidget {
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(model
-                                .articlesModel
+                                .articlesDto
                                 .results[index]
-                                .media!
+                                .media
                                 .first
-                                .mediaMetadata!
+                                .mediaMetadata
                                 .first
                                 .url!),
                           ),
                           trailing: const Icon(Icons.chevron_right),
                           title: Text(
-                              model.articlesModel.results[index].title ?? ""),
+                              model.articlesDto.results[index].title ?? ""),
                           subtitle: Text(
-                              model.articlesModel.results[index].byline ?? ""),
+                              model.articlesDto.results[index].byline ?? ""),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 10, bottom: 10),
@@ -60,7 +60,7 @@ class ArticlesCard extends StatelessWidget {
                                 width: 5,
                               ),
                               Text(
-                                model.articlesModel.results[index]
+                                model.articlesDto.results[index]
                                         .publishedDate ??
                                     "",
                                 style: const TextStyle(color: Colors.white),

@@ -12,7 +12,7 @@ class ArticleDetailsCard extends StatelessWidget {
     var now_1w = DateTime.now().subtract(const Duration(days: 7));
 
     return now_1w.isBefore(
-            DateTime.parse(model.articlesModel.results[index].publishedDate!))
+            DateTime.parse(model.articlesDto.results[index].publishedDate!))
         ? Card(
             color: Colors.grey,
             child: Padding(
@@ -21,7 +21,7 @@ class ArticleDetailsCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    model.articlesModel.results[index].section ?? "",
+                    model.articlesDto.results[index].section ?? "",
                     style: const TextStyle(
                         fontWeight: FontWeight.w600, color: Colors.white60),
                   ),
@@ -31,25 +31,25 @@ class ArticleDetailsCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      model.articlesModel.results[index].media!.first
-                          .mediaMetadata![2].url!,
+                      model.articlesDto.results[index].media.first
+                          .mediaMetadata[2].url!,
                     ),
                   ),
                   const SizedBox(
                     height: 16,
                   ),
                   Text(
-                    model.articlesModel.results[index].title ?? "",
+                    model.articlesDto.results[index].title ?? "",
                     style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(model.articlesModel.results[index].abstract ?? ""),
+                  Text(model.articlesDto.results[index].abstract ?? ""),
                   const SizedBox(
                     height: 12,
                   ),
-                  Text(model.articlesModel.results[index].byline ?? ""),
+                  Text(model.articlesDto.results[index].byline ?? ""),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -58,7 +58,7 @@ class ArticleDetailsCard extends StatelessWidget {
                         color: Colors.white,
                       ),
                       Text(
-                        model.articlesModel.results[index].publishedDate ?? "",
+                        model.articlesDto.results[index].publishedDate ?? "",
                         style: const TextStyle(color: Colors.white),
                       )
                     ],

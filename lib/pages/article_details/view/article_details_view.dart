@@ -30,15 +30,12 @@ class _ArticleDetailsViewState extends State<ArticleDetailsView> {
 
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.grey.withOpacity(0.1),
             title: const Text(
               ArticleStrings.articleDetailsTitle,
-              style: TextStyle(color: Colors.black),
             ),
             leading: IconButton(
               icon: const Icon(
                 Icons.chevron_left,
-                color: Colors.black,
               ),
               onPressed: () => Navigator.pop(context),
             ),

@@ -25,51 +25,49 @@ class ArticlesCard extends StatelessWidget {
                   ),
                 ),
                 child: Card(
-                    color: Colors.grey,
                     child: Column(
-                      children: [
-                        ListTile(
-                          contentPadding: const EdgeInsets.all(12),
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(model
-                                .articlesModel
-                                .results[index]
-                                .media!
-                                .first
-                                .mediaMetadata!
-                                .first
-                                .url!),
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    ListTile(
+                      contentPadding: const EdgeInsets.all(12),
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(model.articlesModel.results[index]
+                            .media!.first.mediaMetadata!.first.url!),
+                      ),
+                      trailing: const Icon(Icons.chevron_right),
+                      title:
+                          Text(model.articlesModel.results[index].title ?? ""),
+                      subtitle:
+                          Text(model.articlesModel.results[index].byline ?? ""),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(6),
+                      padding: const EdgeInsets.all(6),
+                      width: MediaQuery.sizeOf(context).width * 0.3,
+                      alignment: Alignment.centerRight,
+                      decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.calendar_month,
                           ),
-                          trailing: const Icon(Icons.chevron_right),
-                          title: Text(
-                              model.articlesModel.results[index].title ?? ""),
-                          subtitle: Text(
-                              model.articlesModel.results[index].byline ?? ""),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10, bottom: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              const Icon(
-                                Icons.calendar_month,
-                                color: Colors.white,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                model.articlesModel.results[index]
-                                        .publishedDate ??
-                                    "",
-                                style: const TextStyle(color: Colors.white),
-                              )
-                            ],
+                          const SizedBox(
+                            width: 5,
                           ),
-                        )
-                      ],
-                    )),
+                          Text(
+                            model.articlesModel.results[index].publishedDate ??
+                                "",
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )),
               )
         : Container();
   }

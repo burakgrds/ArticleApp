@@ -1,17 +1,19 @@
+import 'dart:convert';
+
+import 'package:article_app/core/model/articles_dto.dart';
 import 'package:article_app/core/utils/strings.dart';
 import 'package:http/http.dart' as http;
-import '../model/articles_model.dart';
 
 abstract class ArticlesRepo {
-  Future<ArticlesModel> fetchData();
+  Future<ArticlesDto> fetchData();
 }
 
 class ArticlesRepoImpl extends ArticlesRepo {
   @override
-  Future<ArticlesModel> fetchData() async {
+  Future<ArticlesDto> fetchData() async {
     final response = await http
         .get(Uri.parse(ArticleStrings.apiUrl + ArticleStrings.apiKey));
 
-    return articlesModelFromJson(response.body);
+    return ArticlesDto.fromJson(jsonDecode(response.body));
   }
 }

@@ -8,7 +8,7 @@ import '../../articles/view_model/articles_view_model.dart';
 class ArticleDetailsView extends StatefulWidget {
   final int index;
 
-  const ArticleDetailsView({Key? key, required this.index}) : super(key: key);
+  const ArticleDetailsView({super.key, required this.index});
 
   @override
   State<ArticleDetailsView> createState() => _ArticleDetailsViewState();
@@ -30,6 +30,10 @@ class _ArticleDetailsViewState extends State<ArticleDetailsView> {
 
         return Scaffold(
           appBar: AppBar(
+<<<<<<< HEAD
+=======
+            backgroundColor: Colors.grey.withValues(alpha: 0.1),
+>>>>>>> d49799afd9f8991de0071345724eff3dfbd7440c
             title: const Text(
               ArticleStrings.articleDetailsTitle,
             ),

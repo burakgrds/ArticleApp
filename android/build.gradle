@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 buildscript {
     ext.kotlin_version = '2.1.21'
     repositories {
@@ -11,6 +12,8 @@ buildscript {
     }
 }
 
+=======
+>>>>>>> d49799afd9f8991de0071345724eff3dfbd7440c
 allprojects {
     repositories {
         google()
@@ -18,12 +21,12 @@ allprojects {
     }
 }
 
-rootProject.buildDir = '../build'
+rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
 subprojects {
-    project.evaluationDependsOn(':app')
+    project.evaluationDependsOn(":app")
 }
 
 tasks.register("clean", Delete) {

@@ -7,7 +7,7 @@ import '../../../core/components/loading/loading.component.dart';
 import '../view_model/articles_view_model.dart';
 
 class ArticlesView extends StatefulWidget {
-  const ArticlesView({Key? key}) : super(key: key);
+  const ArticlesView({super.key});
 
   @override
   State<ArticlesView> createState() => _ArticlesViewState();
@@ -47,7 +47,7 @@ class _ArticlesViewState extends State<ArticlesView> {
             padding: const EdgeInsets.all(8.0),
             child: ListView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: model.articlesModel.results.length,
+                itemCount: model.articlesDto.results.length,
                 itemBuilder: (context, index) {
                   return ArticlesCard(model: model, index: index);
                 }),

@@ -1,8 +1,8 @@
+import 'package:article_app/core/model/articles_dto.dart';
 import 'package:article_app/core/repository/articles_repo.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../../core/view_model/loading_view_model.dart';
-import '../../../core/model/articles_model.dart';
 
 class ArticlesViewModel extends LoadingViewModel {
   ArticlesViewModel({
@@ -11,10 +11,10 @@ class ArticlesViewModel extends LoadingViewModel {
 
   final ArticlesRepo repo;
 
-  ArticlesModel get articlesModel => _articlesModel;
+  ArticlesDto get articlesDto => _articlesDto;
 
-  set articlesModel(ArticlesModel articlesModel) {
-    _articlesModel = articlesModel;
+  set articlesDto(ArticlesDto articlesDto) {
+    _articlesDto = articlesDto;
     notifyListeners();
   }
 
@@ -22,8 +22,8 @@ class ArticlesViewModel extends LoadingViewModel {
     try {
       isLoading = true;
 
-      _articlesModel = await repo.fetchData();
-      articlesModel.results
+      _articlesDto = await repo.fetchData();
+      articlesDto.results
           .sort((a, b) => b.publishedDate!.compareTo(a.publishedDate!));
     } catch (exception) {
       debugPrint('Error in _fetchData : ${exception.toString()}');
@@ -34,5 +34,5 @@ class ArticlesViewModel extends LoadingViewModel {
   }
 
   // Internals
-  ArticlesModel _articlesModel = ArticlesModel();
+  ArticlesDto _articlesDto = ArticlesDto();
 }

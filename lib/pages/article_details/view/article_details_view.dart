@@ -30,10 +30,6 @@ class _ArticleDetailsViewState extends State<ArticleDetailsView> {
 
         return Scaffold(
           appBar: AppBar(
-<<<<<<< HEAD
-=======
-            backgroundColor: Colors.grey.withValues(alpha: 0.1),
->>>>>>> d49799afd9f8991de0071345724eff3dfbd7440c
             title: const Text(
               ArticleStrings.articleDetailsTitle,
             ),

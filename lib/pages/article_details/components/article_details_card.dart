@@ -15,13 +15,12 @@ class ArticleDetailsCard extends StatelessWidget {
             DateTime.parse(model.articlesDto.results[index].publishedDate!))
         ? Card(
             child: Padding(
-<<<<<<< HEAD
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  model.articlesModel.results[index].section ?? "",
+                  model.articlesDto.results[index].section ?? "",
                   style: const TextStyle(
                       fontWeight: FontWeight.w600, color: Colors.white60),
                 ),
@@ -31,25 +30,25 @@ class ArticleDetailsCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
-                    model.articlesModel.results[index].media!.first
-                        .mediaMetadata![2].url!,
+                    model.articlesDto.results[index].media.first
+                        .mediaMetadata[2].url!,
                   ),
                 ),
                 const SizedBox(
                   height: 16,
                 ),
                 Text(
-                  model.articlesModel.results[index].title ?? "",
+                  model.articlesDto.results[index].title ?? "",
                   style: const TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Text(model.articlesModel.results[index].abstract ?? ""),
+                Text(model.articlesDto.results[index].abstract ?? ""),
                 const SizedBox(
                   height: 12,
                 ),
-                Text(model.articlesModel.results[index].byline ?? ""),
+                Text(model.articlesDto.results[index].byline ?? ""),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -57,66 +56,13 @@ class ArticleDetailsCard extends StatelessWidget {
                       Icons.calendar_month,
                     ),
                     Text(
-                      model.articlesModel.results[index].publishedDate ?? "",
-                
+                      model.articlesDto.results[index].publishedDate ?? "",
                     )
                   ],
                 )
               ],
             ),
           ))
-=======
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    model.articlesDto.results[index].section ?? "",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600, color: Colors.white60),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      model.articlesDto.results[index].media.first
-                          .mediaMetadata[2].url!,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    model.articlesDto.results[index].title ?? "",
-                    style: const TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(model.articlesDto.results[index].abstract ?? ""),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Text(model.articlesDto.results[index].byline ?? ""),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Icon(
-                        Icons.calendar_month,
-                        color: Colors.white,
-                      ),
-                      Text(
-                        model.articlesDto.results[index].publishedDate ?? "",
-                        style: const TextStyle(color: Colors.white),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ))
->>>>>>> d49799afd9f8991de0071345724eff3dfbd7440c
         : Container();
   }
 }

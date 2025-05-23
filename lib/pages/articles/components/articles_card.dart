@@ -26,21 +26,19 @@ class ArticlesCard extends StatelessWidget {
                 ),
                 child: Card(
                     child: Column(
-<<<<<<< HEAD
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.all(12),
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(model.articlesModel.results[index]
-                            .media!.first.mediaMetadata!.first.url!),
+                        child: Image.network(model.articlesDto.results[index]
+                            .media.first.mediaMetadata.first.url!),
                       ),
                       trailing: const Icon(Icons.chevron_right),
-                      title:
-                          Text(model.articlesModel.results[index].title ?? ""),
+                      title: Text(model.articlesDto.results[index].title ?? ""),
                       subtitle:
-                          Text(model.articlesModel.results[index].byline ?? ""),
+                          Text(model.articlesDto.results[index].byline ?? ""),
                     ),
                     Container(
                       margin: const EdgeInsets.all(6),
@@ -59,50 +57,9 @@ class ArticlesCard extends StatelessWidget {
                           ),
                           const SizedBox(
                             width: 5,
-=======
-                      children: [
-                        ListTile(
-                          contentPadding: const EdgeInsets.all(12),
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(model
-                                .articlesDto
-                                .results[index]
-                                .media
-                                .first
-                                .mediaMetadata
-                                .first
-                                .url!),
-                          ),
-                          trailing: const Icon(Icons.chevron_right),
-                          title: Text(
-                              model.articlesDto.results[index].title ?? ""),
-                          subtitle: Text(
-                              model.articlesDto.results[index].byline ?? ""),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10, bottom: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              const Icon(
-                                Icons.calendar_month,
-                                color: Colors.white,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                model.articlesDto.results[index]
-                                        .publishedDate ??
-                                    "",
-                                style: const TextStyle(color: Colors.white),
-                              )
-                            ],
->>>>>>> d49799afd9f8991de0071345724eff3dfbd7440c
                           ),
                           Text(
-                            model.articlesModel.results[index].publishedDate ??
+                            model.articlesDto.results[index].publishedDate ??
                                 "",
                           )
                         ],

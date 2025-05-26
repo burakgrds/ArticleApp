@@ -1,69 +1,90 @@
 import 'package:flutter/material.dart';
-import '../../articles/view_model/articles_view_model.dart';
+import '../../../core/model/articles_dto.dart';
 
 class ArticleDetailsCard extends StatelessWidget {
-  final ArticlesViewModel model;
-  final int index;
-  const ArticleDetailsCard(
-      {super.key, required this.model, required this.index});
+  final ResultsDto article;
+
+  const ArticleDetailsCard({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
-    var now_1w = DateTime.now().subtract(const Duration(days: 7));
-
-    return now_1w.isBefore(
-            DateTime.parse(model.articlesDto.results[index].publishedDate!))
-        ? Card(
-            child: Padding(
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (article.media.isNotEmpty)
+            ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(12)),
+              child: Image.network(
+                article.media.first.mediaMetadata.first.url ?? '',
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    height: 300,
+                    color: Colors.grey[300],
+                    child: const Icon(
+                      Icons.error_outline,
+                      size: 50,
+                      color: Colors.grey,
+                    ),
+                  );
+                },
+              ),
+            ),
+          Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  model.articlesDto.results[index].section ?? "",
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.white60),
+                  article.title ?? 'No Title',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-                const SizedBox(
-                  height: 12,
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    model.articlesDto.results[index].media.first
-                        .mediaMetadata[2].url!,
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 Text(
-                  model.articlesDto.results[index].title ?? "",
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                  article.abstract ?? 'No Abstract',
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(model.articlesDto.results[index].abstract ?? ""),
-                const SizedBox(
-                  height: 12,
-                ),
-                Text(model.articlesDto.results[index].byline ?? ""),
+                const SizedBox(height: 24),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(
-                      Icons.calendar_month,
+                    Expanded(
+                      child: Text(
+                        article.byline ?? 'No Author',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     ),
                     Text(
-                      model.articlesDto.results[index].publishedDate ?? "",
-                    )
+                      article.publishedDate ?? 'No Date',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ],
-                )
+                ),
+                if (article.section != null) ...[
+                  const SizedBox(height: 16),
+                  Text(
+                    'Section: ${article.section}',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontStyle: FontStyle.italic,
+                        ),
+                  ),
+                ],
               ],
             ),
-          ))
-        : Container();
+          ),
+        ],
+      ),
+    );
   }
 }
 

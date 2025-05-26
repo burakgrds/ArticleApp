@@ -1,47 +1,45 @@
-import 'package:article_app/core/repository/articles_repo.dart';
+import 'package:article_app/core/repository/article_repository.dart';
+import 'package:article_app/core/services/article_service.dart';
 import 'package:article_app/pages/articles/view/articles_view.dart';
-import 'package:article_app/pages/articles/view_model/articles_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'locator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/bloc/app_bloc_observer.dart';
+import 'core/cache/articles_cache.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // INIT SERVICE LOCATOR
-  await setupLocator();
+  // BLoC Observer'ı ayarla
+  Bloc.observer = AppBlocObserver();
 
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => ArticlesViewModel(repo: locator<ArticlesRepo>()),
-        ),
-      ],
-      child: const MainApp(),
-    ),
-  );
+  final articleService = ArticleService();
+  final articlesCache = ArticlesCache();
+  await articlesCache.init();
+
+  final articleRepository =
+      ArticleRepository(articleService, cache: articlesCache);
+
+  runApp(MyApp(articleRepository: articleRepository));
 }
 
-class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  final ArticleRepository articleRepository;
 
-  @override
-  State<MainApp> createState() => _MainAppState();
-}
+  const MyApp({super.key, required this.articleRepository});
 
-class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
+    return RepositoryProvider.value(
+      value: articleRepository,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          useMaterial3: true,
+        ),
+        title: 'Articles',
+        home: const ArticlesView(),
       ),
-      title: 'Articles',
-      home: const ArticlesView(),
     );
   }
 }

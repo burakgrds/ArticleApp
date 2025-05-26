@@ -1,26 +1,23 @@
 import 'package:article_app/pages/article_details/view/article_details_view.dart';
 import 'package:flutter/material.dart';
-
-import '../view_model/articles_view_model.dart';
+import '../../../core/model/articles_dto.dart';
 
 class ArticlesCard extends StatelessWidget {
-  final ArticlesViewModel model;
-  final int index;
-  const ArticlesCard({super.key, required this.model, required this.index});
+  final ResultsDto article;
+  const ArticlesCard({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
     var now_1w = DateTime.now().subtract(const Duration(days: 7));
 
-    return now_1w.isBefore(
-            DateTime.parse(model.articlesDto.results[index].publishedDate!))
-        ? model.articlesDto.results[index].media.isEmpty
+    return now_1w.isBefore(DateTime.parse(article.publishedDate ?? ''))
+        ? article.media.isEmpty
             ? Container()
             : InkWell(
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => ArticleDetailsView(
-                      index: index,
+                      article: article,
                     ),
                   ),
                 ),
@@ -32,13 +29,13 @@ class ArticlesCard extends StatelessWidget {
                       contentPadding: const EdgeInsets.all(12),
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(model.articlesDto.results[index]
-                            .media.first.mediaMetadata.first.url!),
+                        child: Image.network(
+                          article.media.first.mediaMetadata.first.url ?? '',
+                        ),
                       ),
                       trailing: const Icon(Icons.chevron_right),
-                      title: Text(model.articlesDto.results[index].title ?? ""),
-                      subtitle:
-                          Text(model.articlesDto.results[index].byline ?? ""),
+                      title: Text(article.title ?? ""),
+                      subtitle: Text(article.byline ?? ""),
                     ),
                     Container(
                       margin: const EdgeInsets.all(6),
@@ -59,8 +56,7 @@ class ArticlesCard extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            model.articlesDto.results[index].publishedDate ??
-                                "",
+                            article.publishedDate ?? "",
                           )
                         ],
                       ),

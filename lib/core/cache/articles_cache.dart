@@ -1,38 +1,48 @@
 import 'dart:convert';
-import 'package:article_app/core/model/articles_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../model/articles_dto.dart';
+import '../utils/logger.dart';
 
-abstract class ArticlesCache {
-  Future<bool> cacheArticles(ArticlesDto articles);
-  Future<ArticlesDto?> getCachedArticles();
-  Future<bool> clearCache();
-}
+class ArticlesCache {
+  SharedPreferences? _prefs;
+  static const String _cacheKey = 'cached_articles';
 
-class ArticlesCacheImpl implements ArticlesCache {
-  final SharedPreferences sharedPreferences;
-  static const String cachedArticlesKey = 'CACHED_ARTICLES';
-
-  ArticlesCacheImpl({required this.sharedPreferences});
-
-  @override
-  Future<bool> cacheArticles(ArticlesDto articles) async {
-    return await sharedPreferences.setString(
-      cachedArticlesKey,
-      json.encode(articles.toJson()),
-    );
+  Future<void> init() async {
+    _prefs = await SharedPreferences.getInstance();
   }
 
-  @override
-  Future<ArticlesDto?> getCachedArticles() async {
-    final jsonString = sharedPreferences.getString(cachedArticlesKey);
-    if (jsonString != null) {
-      return ArticlesDto.fromJson(json.decode(jsonString));
+  Future<void> cacheArticles(ArticlesDto articles) async {
+    if (_prefs == null) {
+      await init();
     }
-    return null;
+
+    try {
+      AppLogger.info('Caching articles');
+      final jsonString = json.encode(articles.toJson());
+      await _prefs?.setString(_cacheKey, jsonString);
+      AppLogger.info('Articles cached successfully');
+    } catch (e, stackTrace) {
+      AppLogger.error('Error caching articles', e, stackTrace);
+    }
   }
 
-  @override
-  Future<bool> clearCache() async {
-    return await sharedPreferences.remove(cachedArticlesKey);
+  Future<ArticlesDto?> getCachedArticles() async {
+    if (_prefs == null) {
+      await init();
+    }
+
+    try {
+      AppLogger.info('Getting cached articles');
+      final jsonString = _prefs?.getString(_cacheKey);
+      if (jsonString != null) {
+        AppLogger.info('Found cached articles');
+        return ArticlesDto.fromJson(json.decode(jsonString));
+      }
+      AppLogger.info('No cached articles found');
+      return null;
+    } catch (e, stackTrace) {
+      AppLogger.error('Error getting cached articles', e, stackTrace);
+      return null;
+    }
   }
 }

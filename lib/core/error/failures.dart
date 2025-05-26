@@ -15,9 +15,9 @@ class ServerFailure extends Failure {
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure({required super.message, super.code});
+  const NetworkFailure({required super.message});
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure({required super.message, super.code});
+  const CacheFailure({required super.message});
 }

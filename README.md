@@ -1,39 +1,59 @@
-# Hey there, I am Burak. 🧑‍💻
-# I am Flutter Developer
+# ArticleApp 📰
 
-An Article App using New York Times API
-I used ; 
-* MVVM as a pattern
-* Provider as a state management
-* REST API as fetching data
+A Flutter application that displays articles using the New York Times Most Popular Articles API.
 
-# API Usage
+## Features
+* Built using MVVM (Model-View-ViewModel) architecture
+* State management with Provider
+* REST API integration with NY Times
+* Clean and modern UI
 
-* We'll be using the most viewed section of this API. Note: you need to signup for an API key
-at: https://developer.nytimes.com/get-started, then replace the ‘sample-key’ below with
-the API key assigned to your account.
-* http://api.nytimes.com/svc/mostpopular/v2/viewed/{period}.json?api-key=sample-key
-* To test this API, you can change the period section of the path (available period values are 1,
-7 and 30, which represents how far back, in days, the API returns results for).
-* https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=sample-key
+## API Configuration
 
-# How Can You Pull Project
-First, you'll need to tell git about yourself. Get your username and token together from your settings page.
+This application uses the New York Times Most Popular Articles API. To run the project:
 
-Then run:
+1. Sign up for an API key at [NY Times Developer Portal](https://developer.nytimes.com/get-started)
+2. Replace `sample-key` in the API endpoint with your actual API key
+3. API Endpoint: `https://api.nytimes.com/svc/mostpopular/v2/viewed/{period}.json?api-key=YOUR_API_KEY`
+   * Available periods: 1, 7, or 30 days
 
-* git config --global github.user YOUR_USERNAME
-* git config --global github.token YOURTOKEN
-* You will need to generate a new key if you don't have a back-up of your key.
+## Getting Started
 
-Then you should be able to run:
+### Prerequisites
+* [Flutter](https://flutter.dev/docs/get-started/install)
+* [Android Studio](https://developer.android.com/studio) or [VS Code](https://code.visualstudio.com/)
+* [Xcode](https://developer.apple.com/xcode/) (for iOS development)
 
-* git clone git@github.com:YOUR_USERNAME/YOUR_PROJECT.git
+### Installation
 
-# How Can You Build App
-It is recommended to use Android Studio as you code editor, which can be downloaded [here](https://developer.android.com/studio/?gclid=CjwKCAjwq_D7BRADEiwAVMDdHjI_Lu5xR1whSMHH-WDMO3x6WDQVbBcZxbhN9h6m9SsT6b_wjmuKkhoCbSwQAvD_BwE&gclsrc=aw.ds). To complete the iOS deployment steps you will also need to have [Xcode](https://developer.apple.com/xcode/) installed. The last piece you will need to set up before beginning this project is the set up of an [iOS simulator](https://flutter.dev/docs/get-started/install/macos#set-up-the-ios-simulator) as well as an [Android emulator](https://flutter.dev/docs/get-started/install/macos#set-up-the-android-emulator). Once these sets have been completed you are ready to start building the app in your pc.
+1. Clone the repository:
+```bash
+git clone https://github.com/YOUR_USERNAME/ArticleApp.git
+cd ArticleApp
+```
 
-# File Structure
-![name](https://github.com/burakgrds/ArticleApp/assets/38495115/9bc82e5f-19db-4489-8814-0236ca994d3d)
+2. Install dependencies:
+```bash
+flutter pub get
+```
 
-[linkedin] https://www.linkedin.com/in/burak-g%C3%B6l-12b17a13b/
+3. Run the app:
+```bash
+flutter run
+```
+
+## Project Structure
+![Project Structure](https://github.com/burakgrds/ArticleApp/assets/38495115/9bc82e5f-19db-4489-8814-0236ca994d3d)
+
+## Development Setup
+* Set up [iOS simulator](https://flutter.dev/docs/get-started/install/macos#set-up-the-ios-simulator)
+* Set up [Android emulator](https://flutter.dev/docs/get-started/install/macos#set-up-the-android-emulator)
+
+## Author
+
+👤 **Burak Göl**
+* LinkedIn: [Burak Göl](https://www.linkedin.com/in/burak-g%C3%B6l-12b17a13b/)
+
+## License
+
+This project is available under the MIT license. See the LICENSE file for more info.

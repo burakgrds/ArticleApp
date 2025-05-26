@@ -43,15 +43,37 @@ class _ArticlesViewState extends State<ArticlesView> {
             ),
             centerTitle: true,
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: model.articlesDto.results.length,
-                itemBuilder: (context, index) {
-                  return ArticlesCard(model: model, index: index);
-                }),
-          ),
+          body: model.errorMessage != null
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        model.errorMessage!,
+                        style: const TextStyle(color: Colors.red),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        onPressed: () => model.fetchData(),
+                        child: const Text('Retry'),
+                      ),
+                    ],
+                  ),
+                )
+              : RefreshIndicator(
+                  onRefresh: () => model.fetchData(),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount: model.articlesDto.results.length,
+                      itemBuilder: (context, index) {
+                        return ArticlesCard(model: model, index: index);
+                      },
+                    ),
+                  ),
+                ),
         );
       },
       child: const LoadingComponent(),

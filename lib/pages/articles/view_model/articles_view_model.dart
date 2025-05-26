@@ -10,6 +10,7 @@ class ArticlesViewModel extends LoadingViewModel {
   });
 
   final ArticlesRepo repo;
+  String? errorMessage;
 
   ArticlesDto get articlesDto => _articlesDto;
 
@@ -21,12 +22,21 @@ class ArticlesViewModel extends LoadingViewModel {
   Future<void> fetchData() async {
     try {
       isLoading = true;
+      errorMessage = null;
 
-      _articlesDto = await repo.fetchData();
-      articlesDto.results
-          .sort((a, b) => b.publishedDate!.compareTo(a.publishedDate!));
+      final result = await repo.fetchData();
+
+      result.fold(
+        (failure) => errorMessage = failure.message,
+        (data) {
+          _articlesDto = data;
+          _articlesDto.results
+              .sort((a, b) => b.publishedDate!.compareTo(a.publishedDate!));
+        },
+      );
     } catch (exception) {
-      debugPrint('Error in _fetchData : ${exception.toString()}');
+      errorMessage = 'An unexpected error occurred';
+      debugPrint('Error in fetchData: ${exception.toString()}');
     }
 
     isLoading = false;

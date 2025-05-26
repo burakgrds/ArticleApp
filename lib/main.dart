@@ -10,7 +10,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // INIT SERVICE LOCATOR
-  setupLocator();
+  await setupLocator();
 
   runApp(
     MultiProvider(
@@ -28,8 +28,7 @@ class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _MainAppState createState() => _MainAppState();
+  State<MainApp> createState() => _MainAppState();
 }
 
 class _MainAppState extends State<MainApp> {
@@ -37,8 +36,10 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme:
-          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
+      ),
       title: 'Articles',
       home: const ArticlesView(),
     );
